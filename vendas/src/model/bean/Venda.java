@@ -13,6 +13,7 @@ public class Venda {
     private int id;
     private String data;
     private double valor;
+    private String obs;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Venda {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+    
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 }

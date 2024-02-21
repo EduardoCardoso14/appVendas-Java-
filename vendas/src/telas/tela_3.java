@@ -36,7 +36,8 @@ public class tela_3 extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 v.getId(),
                 v.getData(),
-                v.getValor()
+                v.getValor(),
+                v.getObs()
             });
 
         }
@@ -140,12 +141,12 @@ public class tela_3 extends javax.swing.JFrame {
         TabHistorico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TabHistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", ""},
-                {"", "", ""},
-                {"", "", ""}
+                {"", "", "", null},
+                {"", "", "", null},
+                {"", "", "", null}
             },
             new String [] {
-                "Código", "Data da Venda", "Total da Venda"
+                "Código", "Data da Venda", "Total da Venda", "Obs."
             }
         ));
         TabHistorico.setShowHorizontalLines(true);

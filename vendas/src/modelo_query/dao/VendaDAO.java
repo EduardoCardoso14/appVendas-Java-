@@ -22,6 +22,27 @@ import model.bean.Venda;
  * @author 962670
  */
 public class VendaDAO {
+    
+    public void criarAmigo(Venda oi) {
+        
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO vendas (valor,data,obs)VALUES(?,?,?)");
+            stmt.setDouble(1, oi.getValor());
+            stmt.setString(2, oi.getData());
+            stmt.setString(3, oi.getObs());
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            Banco.closeConnection(con, stmt);
+        }
+
+    }
 
     public static double verTotal(String datezin) {
         double oi = 0;
@@ -68,6 +89,7 @@ public class VendaDAO {
                 venda.setId(rs.getInt("idvendas"));
                 venda.setData(rs.getString("data"));
                 venda.setValor(rs.getDouble("valor"));
+                venda.setObs(rs.getString("obs"));
                 vendas.add(venda);
             }
 
