@@ -207,7 +207,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="TabHistorico">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -218,46 +218,26 @@
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="3">
+                      <Table columnCount="3" rowCount="3">
                         <Column editable="true" title="C&#xf3;digo" type="java.lang.Object">
-                          <Data value="1"/>
-                          <Data value="2"/>
-                          <Data value="3"/>
+                          <Data value=""/>
+                          <Data value=""/>
+                          <Data value=""/>
                         </Column>
                         <Column editable="true" title="Data da Venda" type="java.lang.Object">
-                          <Data value="10/02/2018"/>
-                          <Data value="10/02/2019"/>
-                          <Data value="10/02/2019"/>
-                        </Column>
-                        <Column editable="true" title="Cliente" type="java.lang.Object">
-                          <Data value="Caio Malheiros"/>
-                          <Data value="Caio Malheiros"/>
-                          <Data value="Caio Malheiros"/>
+                          <Data value=""/>
+                          <Data value=""/>
+                          <Data value=""/>
                         </Column>
                         <Column editable="true" title="Total da Venda" type="java.lang.Object">
-                          <Data value="100.0"/>
-                          <Data value="200.0"/>
-                          <Data value="500.0"/>
-                        </Column>
-                        <Column editable="true" title="Obs" type="java.lang.Object">
-                          <Data value="OK"/>
-                          <Data value="OK"/>
-                          <Data value="OK"/>
+                          <Data value=""/>
+                          <Data value=""/>
+                          <Data value=""/>
                         </Column>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -282,7 +262,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MousePressed"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TabHistoricoMousePressed"/>
                   </Events>
                 </Component>
               </SubComponents>

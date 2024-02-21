@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.bean.Produto;
 import model.bean.Venda;
 
 /**
@@ -33,11 +34,10 @@ public class VendaDAO {
             rs = stmt.executeQuery();
              while (rs.next()) {
                     oi = rs.getDouble("total");
+                    if (oi < 1){
+                        JOptionPane.showMessageDialog(null, "Nenhuma venda encontrada!");
+                    }
                 }
-            if (oi > 1) {
-            }else{
-            JOptionPane.showMessageDialog(null, "Nenhuma venda encontrada!");
-            }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -46,5 +46,38 @@ public class VendaDAO {
 
         // return oi;
         return oi;
+    }
+    
+        public List<Venda> read() {
+
+        Connection con = Banco.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Venda> vendas = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vendas");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Venda venda = new Venda();
+
+                venda.setId(rs.getInt("idvendas"));
+                venda.setData(rs.getString("data"));
+                venda.setValor(rs.getDouble("valor"));
+                vendas.add(venda);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Banco.closeConnection(con, stmt, rs);
+        }
+
+        return vendas;
+
     }
 }

@@ -9,9 +9,19 @@ package model.bean;
  * @author 962670
  */
 public class Venda {
+
+    private int id;
     private String data;
     private double valor;
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getData() {
         return data;
     }
@@ -19,12 +29,12 @@ public class Venda {
     public void setData(String data) {
         this.data = data;
     }
-    
+
     public double getValor() {
         return valor;
     }
 
-    public void setValor(double Valor){
+    public void setValor(double valor) {
         this.valor = valor;
     }
 }

@@ -6,6 +6,8 @@ package telas;
 
 import modelo_query.dao.VendaDAO;
 import model.bean.Venda;
+import java.text.NumberFormat;
+
 /**
  *
  * @author 924535
@@ -185,12 +187,14 @@ public class tela_5 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String datezin = ano.getText()+"-"+mes.getText()+"-"+dia.getText();
+        NumberFormat z = NumberFormat.getCurrencyInstance();
+
+        String datezin = ano.getText() + "-" + mes.getText() + "-" + dia.getText();
         VendaDAO bomdia = new VendaDAO();
-        result.setText(String.valueOf(bomdia.verTotal(datezin)));
-        
-        
-        
+        double totalzin = bomdia.verTotal(datezin);
+        result.setText(String.valueOf(z.format(totalzin)));
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaActionPerformed

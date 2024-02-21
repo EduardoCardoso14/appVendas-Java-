@@ -4,6 +4,12 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.bean.Venda;
+import modelo_query.dao.VendaDAO;
+
 /**
  *
  * @author 974635
@@ -15,6 +21,26 @@ public class tela_3 extends javax.swing.JFrame {
      */
     public tela_3() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) TabHistorico.getModel();
+        TabHistorico.setRowSorter(new TableRowSorter(modelo));
+
+        readJTable();
+    }
+
+    public void readJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) TabHistorico.getModel();
+        modelo.setNumRows(0);
+        VendaDAO pdao = new VendaDAO();
+
+        for (Venda v : pdao.read()) {
+            modelo.addRow(new Object[]{
+                v.getId(),
+                v.getData(),
+                v.getValor()
+            });
+
+        }
+
     }
 
     /**
@@ -37,7 +63,7 @@ public class tela_3 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabHistorico = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Histórico de Vendas");
@@ -110,26 +136,26 @@ public class tela_3 extends javax.swing.JFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabHistorico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        TabHistorico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TabHistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "10/02/2018", "Caio Malheiros", "100.0", "OK"},
-                {"2", "10/02/2019", "Caio Malheiros", "200.0", "OK"},
-                {"3", "10/02/2019", "Caio Malheiros", "500.0", "OK"}
+                {"", "", ""},
+                {"", "", ""},
+                {"", "", ""}
             },
             new String [] {
-                "Código", "Data da Venda", "Cliente", "Total da Venda", "Obs"
+                "Código", "Data da Venda", "Total da Venda"
             }
         ));
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        TabHistorico.setShowHorizontalLines(true);
+        TabHistorico.setShowVerticalLines(true);
+        TabHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTable1MousePressed(evt);
+                TabHistoricoMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TabHistorico);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -179,11 +205,11 @@ public class tela_3 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+    private void TabHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabHistoricoMousePressed
         // TODO add your handling code here:
-        tela_4 form2 = new tela_4(); 
-       form2.setVisible(true); 
-    }//GEN-LAST:event_jTable1MousePressed
+        tela_4 form2 = new tela_4();
+        form2.setVisible(true);
+    }//GEN-LAST:event_TabHistoricoMousePressed
 
     /**
      * @param args the command line arguments
@@ -221,6 +247,7 @@ public class tela_3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TabHistorico;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -230,7 +257,6 @@ public class tela_3 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
