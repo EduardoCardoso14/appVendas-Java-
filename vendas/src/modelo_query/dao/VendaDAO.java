@@ -79,7 +79,7 @@ public class VendaDAO {
         List<Venda> vendas = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM vendas");
+            stmt = con.prepareStatement("select idvendas,valor,obs,DATE_FORMAT(data, \"%d/%m/%Y\") as data from vendas");
             rs = stmt.executeQuery();
 
             while (rs.next()) {

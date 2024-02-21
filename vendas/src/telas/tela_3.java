@@ -4,7 +4,13 @@
  */
 package telas;
 
+import java.text.NumberFormat;
 import javax.swing.JOptionPane;
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Venda;
@@ -28,6 +34,8 @@ public class tela_3 extends javax.swing.JFrame {
     }
 
     public void readJTable() {
+
+        NumberFormat z = NumberFormat.getCurrencyInstance();
         DefaultTableModel modelo = (DefaultTableModel) TabHistorico.getModel();
         modelo.setNumRows(0);
         VendaDAO pdao = new VendaDAO();
@@ -36,7 +44,7 @@ public class tela_3 extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 v.getId(),
                 v.getData(),
-                v.getValor(),
+                z.format(v.getValor()),
                 v.getObs()
             });
 
