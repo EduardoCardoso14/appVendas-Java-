@@ -4,10 +4,8 @@
  */
 package telas;
 
-import model.bean.Funcionario;
-import model.bean.Produto;
+import model.bean.Funcionario; 
 import modelo_query.dao.FuncionarioDAO;
-import modelo_query.dao.ProdutoDAO;
 
 /**
  *

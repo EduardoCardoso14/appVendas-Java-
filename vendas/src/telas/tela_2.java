@@ -31,6 +31,7 @@ public class tela_2 extends javax.swing.JFrame {
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cliente = new javax.swing.JMenu();
         funcionario = new javax.swing.JMenu();
@@ -53,9 +54,11 @@ public class tela_2 extends javax.swing.JFrame {
         jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BAR NHA CHICA");
+        setTitle("SISTEMINHA QUE ATRAPAIA");
         setBackground(new java.awt.Color(255, 255, 255));
         setIconImages(null);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Users\\962670\\OneDrive - SENAC em Minas - EDU\\Área de Trabalho\\alanzoka1.gif")); // NOI18N
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jMenuBar1.setMinimumSize(new java.awt.Dimension(495, 10));
@@ -179,11 +182,17 @@ public class tela_2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(312, 312, 312))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,6 +315,7 @@ public class tela_2 extends javax.swing.JFrame {
     private javax.swing.JMenu fornecedor;
     private javax.swing.JMenu funcionario;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
