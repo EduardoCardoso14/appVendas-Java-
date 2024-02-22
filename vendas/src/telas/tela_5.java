@@ -77,6 +77,7 @@ public class tela_5 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("Data da venda:");
 
+        result.setEditable(false);
         result.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         dia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
