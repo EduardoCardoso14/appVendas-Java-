@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.Funcionario;
+import model.bean.Produto;
 
 /**
  *
@@ -25,9 +26,7 @@ public class FuncionarioDAO {
     public void create(Funcionario f) {
 
         Connection con = Banco.getConnection();
-        Connection abc = Banco.getConnection();
         PreparedStatement stmt = null;
-        PreparedStatement s2 = null;
 
         try {
             stmt = con.prepareStatement("INSERT INTO funcionario (nome, email, celular, cep, endereco, numero, bairro, cidade, complemento, rg, cpf, cargo, senha) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -46,10 +45,6 @@ public class FuncionarioDAO {
             stmt.setString(13, f.getSenha());
             stmt.executeUpdate();
 
-            s2 = abc.prepareStatement("INSERT INTO usuario (login, senha) VALUES (?,?)");
-            s2.setString(1, f.getNome());
-            s2.setString(2, f.getSenha());
-
             JOptionPane.showMessageDialog(null, "Salvo com sucesso, " + f.getNome() + "!");
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -66,11 +61,121 @@ public class FuncionarioDAO {
 
         try {
             stmt = con.prepareStatement("INSERT INTO usuario (login, senha) VALUES (?,?)");
-            stmt.setString(1, f.getNome());
+            stmt.setString(1, f.getEmail());
             stmt.setString(2, f.getSenha());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
+        } finally {
+            Banco.closeConnection(con, stmt);
+        }
+
+    }
+
+    public List<Funcionario> read() {
+
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM funcionario");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Funcionario funcionario = new Funcionario();
+
+                funcionario.setId(rs.getInt("id"));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCpf(rs.getInt("cpf"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setSenha(rs.getString("senha"));
+                funcionarios.add(funcionario);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Banco.closeConnection(con, stmt, rs);
+        }
+
+        return funcionarios;
+
+    }
+
+    public List<Funcionario> readForDesc(String desc) {
+
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM funcionario WHERE nome LIKE ?");
+            stmt.setString(1, "%" + desc + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Funcionario funcionario = new Funcionario();
+
+                funcionario.setId(rs.getInt("id"));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCpf(rs.getInt("cpf"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setSenha(rs.getString("senha"));
+                funcionarios.add(funcionario);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Banco.closeConnection(con, stmt, rs);
+        }
+
+        return funcionarios;
+
+    }
+    
+    public void update(Funcionario f) {
+
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE funcionario SET nome = ? ,cpf = ?,email = ?, senha = ? WHERE id = ?");
+            stmt.setString(1, f.getNome());
+            stmt.setInt(2, f.getCpf());
+            stmt.setString(3, f.getEmail());
+            stmt.setString(4, f.getSenha());
+            stmt.setInt(5, f.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            Banco.closeConnection(con, stmt);
+        }
+
+    }
+
+    public void delete(Funcionario f) {
+
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM funcionario WHERE id = ?");
+            stmt.setInt(1, f.getId());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
         } finally {
             Banco.closeConnection(con, stmt);
         }
