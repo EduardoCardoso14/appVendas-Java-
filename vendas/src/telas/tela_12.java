@@ -48,8 +48,9 @@ public class tela_12 extends javax.swing.JFrame {
         }
 
     }
+
     public void readJTableForDesc(String desc) {
-        
+
         DefaultTableModel modelo = (DefaultTableModel) jTProdutos.getModel();
         modelo.setNumRows(0);
         FuncionarioDAO fdao = new FuncionarioDAO();
@@ -132,6 +133,9 @@ public class tela_12 extends javax.swing.JFrame {
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MousePressed(evt);
             }
         });
 
@@ -297,9 +301,7 @@ public class tela_12 extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        tela_8 form2 = new tela_8();
-        form2.setVisible(true);
-        dispose();
+
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
@@ -310,7 +312,7 @@ public class tela_12 extends javax.swing.JFrame {
             FuncionarioDAO fdao = new FuncionarioDAO();
 
             f.setId((int) jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 0));
-            
+
             fdao.delete(f);
 
             nome.setText("");
@@ -356,7 +358,7 @@ public class tela_12 extends javax.swing.JFrame {
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         // TODO add your handling code here:
-         if (jTProdutos.getSelectedRow() != -1) {
+        if (jTProdutos.getSelectedRow() != -1) {
 
             Funcionario f = new Funcionario();
             FuncionarioDAO fdao = new FuncionarioDAO();
@@ -377,6 +379,13 @@ public class tela_12 extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_atualizarActionPerformed
+
+    private void jTabbedPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MousePressed
+        // TODO add your handling code here:
+        tela_8 form2 = new tela_8();
+        form2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jTabbedPane1MousePressed
 
     /**
      * @param args the command line arguments

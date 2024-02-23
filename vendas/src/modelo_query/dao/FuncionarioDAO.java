@@ -106,6 +106,48 @@ public class FuncionarioDAO {
 
     }
 
+    public List<Funcionario> pesquisa(String nome2) {
+
+        Connection con = Banco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM funcionario where nome = ? limit 1");
+            stmt.setString(1, nome2);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setId(rs.getInt("id"));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setCelular(rs.getString("celular"));
+                funcionario.setCep(rs.getInt("cep"));
+                funcionario.setEndereco(rs.getString("endereco"));
+                funcionario.setNumero(rs.getInt("numero"));
+                funcionario.setBairro(rs.getString("bairro"));
+                funcionario.setCidade(rs.getString("cidade"));
+                funcionario.setComplemento(rs.getString("complemento"));
+                funcionario.setDocRg(rs.getInt("rg"));
+                funcionario.setCpf(rs.getInt("cpf"));
+                funcionario.setCargo(rs.getString("cargo"));
+                funcionario.setSenha(rs.getString("senha"));
+                funcionarios.add(funcionario);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Banco.closeConnection(con, stmt, rs);
+        }
+
+        return funcionarios;
+
+    }
+
     public List<Funcionario> readForDesc(String desc) {
 
         Connection con = Banco.getConnection();
@@ -140,7 +182,7 @@ public class FuncionarioDAO {
         return funcionarios;
 
     }
-    
+
     public void update(Funcionario f) {
 
         Connection con = Banco.getConnection();

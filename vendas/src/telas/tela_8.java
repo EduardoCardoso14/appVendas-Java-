@@ -4,7 +4,7 @@
  */
 package telas;
 
-import model.bean.Funcionario; 
+import model.bean.Funcionario;
 import modelo_query.dao.FuncionarioDAO;
 
 /**
@@ -40,7 +40,7 @@ public class tela_8 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        pesquisar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -65,6 +65,8 @@ public class tela_8 extends javax.swing.JFrame {
         cargo = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         senha = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         jLabel2.setText("jLabel2");
@@ -117,14 +119,22 @@ public class tela_8 extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MousePressed(evt);
+            }
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Nome:");
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Pesquisar");
+        pesquisar.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Email (login):");
@@ -172,6 +182,10 @@ public class tela_8 extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setText("Senha:");
+
+        id.setEditable(false);
+
+        jLabel3.setText("ID");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -241,17 +255,27 @@ public class tela_8 extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1)))
+                        .addComponent(pesquisar)))
                 .addGap(28, 28, 28))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(pesquisar))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -413,10 +437,40 @@ public class tela_8 extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        tela_12 form2 = new tela_12();          
-        form2.setVisible(true); 
-        dispose();
+
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jTabbedPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MousePressed
+        // TODO add your handling code here:
+        tela_12 form2 = new tela_12();
+        form2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jTabbedPane1MousePressed
+
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        // TODO add your handling code here:
+        FuncionarioDAO dao = new FuncionarioDAO();
+        String nome2 = nome.getText();
+
+        for (Funcionario f : dao.pesquisa(nome2)) {
+            id.setText(String.valueOf(f.getId()));
+            nome.setText(f.getNome());
+            celular.setText(f.getCelular());
+            cep.setText(String.valueOf(f.getCep()));
+            endereco.setText(f.getEndereco());
+            numero.setText(String.valueOf(f.getNumero()));
+            bairro.setText(f.getBairro());
+            cidade.setText(f.getCidade());
+            complemento.setText(f.getComplemento());
+            rg.setText(String.valueOf(f.getDocRg()));
+            cpf.setText(String.valueOf(f.getCpf()));
+            cargo.setText(f.getCargo());
+            email.setText(f.getEmail());
+            senha.setText(f.getSenha());
+
+        }
+
+    }//GEN-LAST:event_pesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -463,7 +517,7 @@ public class tela_8 extends javax.swing.JFrame {
     private javax.swing.JTextField cpf;
     private javax.swing.JTextField email;
     private javax.swing.JTextField endereco;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -475,6 +529,7 @@ public class tela_8 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -488,6 +543,7 @@ public class tela_8 extends javax.swing.JFrame {
     private javax.swing.JButton limpar;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField numero;
+    private javax.swing.JButton pesquisar;
     private javax.swing.JTextField rg;
     private javax.swing.JButton salvar;
     private javax.swing.JTextField senha;
